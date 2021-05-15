@@ -1,18 +1,61 @@
-import React from 'react';
-import Head from 'next/head';
-import { Box, Heading } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/button';
+import { Input } from '@chakra-ui/input';
+import { Container, HStack, List, ListItem } from '@chakra-ui/layout';
+import React, { FormEvent } from 'react';
 
-const Home: React.FC = () => {
+interface ITodoAppProps {}
+
+const TodoApp: React.FC<ITodoAppProps> = () => {
+	const [inputValue, setInputValue] = React.useState<string>('');
+	const [todos, setTodos] = React.useState<string[]>([]);
+	const handleFormSubmit = (e: FormEvent) => {
+		e.preventDefault();
+		const newTodo = inputValue?.trim() || '';
+
+		if (!newTodo || todos.includes(newTodo)) return;
+
+		setTodos([...todos, newTodo]);
+		setInputValue('');
+	};
+
+	const handleRemoveTodo = (todoIndexToRemove) => {
+		setTodos(todos.filter((_, idx) => todoIndexToRemove !== idx));
+	};
+
 	return (
-		<Box>
-			<Head>
-				<title>Create Next App</title>
-				<link href="/favicon.ico" rel="icon" />
-			</Head>
+		<Container className="TodoApp" py={4}>
+			<HStack as="form" onSubmit={handleFormSubmit}>
+				<Input
+					autoFocus
+					name="todo"
+					placeholder="Add a new task!"
+					type="text"
+					value={inputValue}
+					onChange={(e) => setInputValue(e.target.value)}
+				/>
+				<Button colorScheme="purple" type="submit">
+					Save
+				</Button>
+			</HStack>
 
-			<Heading>Hola</Heading>
-		</Box>
+			<List my={4}>
+				{todos.map((todo, todoIndex) => (
+					<ListItem key={todo} listStyleType="disc">
+						{todo}
+						<span> </span>
+						<Button
+							colorScheme="red"
+							size="xs"
+							variant="ghost"
+							onClick={() => handleRemoveTodo(todoIndex)}
+						>
+							X
+						</Button>
+					</ListItem>
+				))}
+			</List>
+		</Container>
 	);
 };
 
-export default Home;
+export default TodoApp;
