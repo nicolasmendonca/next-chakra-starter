@@ -20,7 +20,7 @@ module.exports = {
 	plugins: ['react', 'prettier', 'import', '@typescript-eslint'],
 	rules: {
 		'@typescript-eslint/no-unused-vars': [
-			'warn',
+			'error',
 			{
 				args: 'after-used',
 				argsIgnorePattern: '^_.*?$',
@@ -28,7 +28,7 @@ module.exports = {
 			},
 		],
 		'import/order': [
-			'warn',
+			'error',
 			{
 				'newlines-between': 'always',
 				pathGroups: [
@@ -40,7 +40,7 @@ module.exports = {
 				],
 			},
 		],
-		'no-console': 'warn',
+		'no-console': 'error',
 		'padding-line-between-statements': [
 			'error',
 			{ blankLine: 'always', next: 'return', prev: '*' },
@@ -63,7 +63,7 @@ module.exports = {
 			},
 		],
 		'react/jsx-sort-props': [
-			'warn',
+			'error',
 			{
 				callbacksLast: true,
 				noSortAlphabetically: false,
@@ -72,7 +72,7 @@ module.exports = {
 			},
 		],
 		'react/prop-types': 'off',
-		'react/self-closing-comp': 'warn',
+		'react/self-closing-comp': 'error',
 		'sort-keys': ['warn', 'asc', { caseSensitive: true, minKeys: 2, natural: false }],
 	},
 };

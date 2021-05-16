@@ -26,7 +26,7 @@ const TodoApp: React.FC<ITodoAppProps> = () => {
 		<Container className="TodoApp" py={4}>
 			<HStack as="form" onSubmit={handleFormSubmit}>
 				<Input
-					autoFocus
+					autoFocus={true}
 					name="todo"
 					placeholder="Add a new task!"
 					type="text"
