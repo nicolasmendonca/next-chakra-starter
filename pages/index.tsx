@@ -1,11 +1,14 @@
-import { Button } from '@chakra-ui/button';
+import { Button, IconButton } from '@chakra-ui/button';
+import { useColorMode } from '@chakra-ui/color-mode';
 import { Input } from '@chakra-ui/input';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import { Container, HStack, List, ListItem } from '@chakra-ui/layout';
 import React, { FormEvent } from 'react';
 
 interface ITodoAppProps {}
 
 const TodoApp: React.FC<ITodoAppProps> = () => {
+	const { toggleColorMode, colorMode } = useColorMode();
 	const [inputValue, setInputValue] = React.useState<string>('');
 	const [todos, setTodos] = React.useState<string[]>([]);
 	const handleFormSubmit = (e: FormEvent) => {
@@ -25,6 +28,19 @@ const TodoApp: React.FC<ITodoAppProps> = () => {
 	return (
 		<Container className="TodoApp" py={4}>
 			<HStack as="form" onSubmit={handleFormSubmit}>
+				{colorMode === 'light' ? (
+					<IconButton
+						aria-label="Set dark mode"
+						icon={<FaMoon aria-hidden={true} />}
+						onClick={toggleColorMode}
+					/>
+				) : (
+					<IconButton
+						aria-label="Set light mode"
+						icon={<FaSun aria-hidden={true} />}
+						onClick={toggleColorMode}
+					/>
+				)}
 				<Input
 					autoFocus={true}
 					name="todo"
