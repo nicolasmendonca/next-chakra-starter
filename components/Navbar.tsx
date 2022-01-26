@@ -1,17 +1,5 @@
 import React from 'react';
-import {
-	Box,
-	Button,
-	Container,
-	Heading,
-	HStack,
-	Text,
-	Avatar,
-	IconButton,
-	useColorMode,
-	VStack,
-} from '@chakra-ui/react';
-import { useUser } from '@auth0/nextjs-auth0';
+import { Box, Container, Heading, HStack, IconButton, useColorMode } from '@chakra-ui/react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 
 interface NavbarProps {
@@ -19,7 +7,6 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ headingText }) => {
-	const { user } = useUser();
 	const { toggleColorMode, colorMode } = useColorMode();
 
 	return (
@@ -31,33 +18,6 @@ export const Navbar: React.FC<NavbarProps> = ({ headingText }) => {
 					</Heading>
 					<Box>
 						<HStack>
-							{user?.name ? (
-								<HStack spacing={8}>
-									<HStack>
-										<Avatar name={user.name} src={user.picture} />
-										<VStack>
-											<Text>{user.name}</Text>
-											<Button
-												alignSelf="flex-end"
-												as="a"
-												color="white"
-												fontWeight="light"
-												href={`/api/auth/logout?returnTo=${encodeURIComponent(
-													'http://localhost:3000'
-												)}`}
-												size="xs"
-												variant="link"
-											>
-												Logout
-											</Button>
-										</VStack>
-									</HStack>
-								</HStack>
-							) : (
-								<Button as="a" color="white" href="/api/auth/login" variant="link">
-									Login
-								</Button>
-							)}
 							<Box>
 								{colorMode === 'light' ? (
 									<IconButton

@@ -6,9 +6,7 @@
 
 1. Fork this repo on github
 2. Install dependencies with `yarn install`
-3. Copy the provided example environment settings `cp .example.env .env.local`
-4. Provide the real settings from [Auth0's Dashboard](https://manage.auth0.com/dashboard/)
-5. Run with `yarn dev`
+3. Run with `yarn dev`
 
 ## What it has built in:
 
@@ -19,7 +17,6 @@
 - Autofix on pre-commit
 - Chakra UI with it's theme already setup
 - Todo app + Theme toggling example
-- Authentication with Auth0
 
 ---
 
